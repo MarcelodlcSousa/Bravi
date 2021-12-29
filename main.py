@@ -87,4 +87,4 @@ api.add_resource(GetKnight,'/getknight/<int:id>-<string:piece_type>-<string:colo
 api.add_resource(GetAny,'/getany/<string:piece_type>-<string:color>')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
