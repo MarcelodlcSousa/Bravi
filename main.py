@@ -11,8 +11,7 @@ chess = []
 
 def knight_moves(position):
     x, y = position
-    moves = list(product([x - 1, x + 1], [y - 2, y + 2])) + list(
-        product([x - 2, x + 2], [y - 1, y + 1]))
+    moves = list(product([x - 1, x + 1], [y - 2, y + 2])) + list(product([x - 2, x + 2], [y - 1, y + 1]))
     moves = [(x, y) for x, y in moves if x >= 0 and y >= 0 and x < 8 and y < 8]
     return moves
 
@@ -58,7 +57,7 @@ class PostXadrez(Resource):
 class GetKnight(Resource):
 
     def get(self, id, piece_type, color, line_index, column_index):
-        d = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f', 7: 'g', 8: 'h'}
+        correlation_dictionary = {1: 'a', 2: 'b', 3: 'c', 4: 'd', 5: 'e', 6: 'f', 7: 'g', 8: 'h'}
         possible_moves = []
         corrected_coords = []
         for piece in chess:
@@ -69,7 +68,7 @@ class GetKnight(Resource):
                         new_moves = knight_moves(location)
                     for coords in new_moves:
                         a, b = coords
-                        alg_column = d[b]
+                        alg_column = correlation_dictionary[b]
                         corrected_coords.append((a, alg_column))
                     return corrected_coords
         return {'id': None}, 404
